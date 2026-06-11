@@ -1,17 +1,26 @@
 import Link from "next/link";
-import { Phone } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import Logo from "@/components/Logo";
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="w-full bg-background/90 backdrop-blur-sm fixed top-0 z-50 border-b border-foreground/5 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-        <Link href="/" className="flex flex-col">
-          <span className="font-serif text-2xl font-bold text-foreground leading-tight">
-            SYABIL BINAR
-          </span>
-          <span className="text-xs uppercase tracking-[0.2em] text-foreground/70">
-            Amerta
-          </span>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        
+        <Link href="/" className="group scale-75 md:scale-90 origin-left hover:scale-[0.78] md:hover:scale-95 transition-transform duration-300">
+          <Logo />
         </Link>
 
         <div className="hidden lg:flex items-center space-x-10 text-sm font-medium tracking-wide">
