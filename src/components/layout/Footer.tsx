@@ -24,10 +24,10 @@ export default function Footer() {
           <div className="md:col-span-3">
             <h4 className="text-lg font-medium mb-6">Layanan</h4>
             <ul className="space-y-4 text-white/60 font-light text-sm">
-              <li><Link href="/#services" className="hover:text-white transition-colors">Visa Turis & Bisnis</Link></li>
-              <li><Link href="/#services" className="hover:text-white transition-colors">KITAS & IMTA</Link></li>
-              <li><Link href="/#services" className="hover:text-white transition-colors">Pendirian PT & CV</Link></li>
-              <li><Link href="/#services" className="hover:text-white transition-colors">Visa Investor</Link></li>
+              <li><Link href="/#visa-luar-negeri" className="hover:text-white transition-colors">Visa Turis & Bisnis</Link></li>
+              <li><Link href="/#visa-wna" className="hover:text-white transition-colors">KITAS & IMTA</Link></li>
+              <li><Link href="/#perizinan-perusahaan" className="hover:text-white transition-colors">Pendirian PT & CV</Link></li>
+              <li><Link href="/#visa-wna" className="hover:text-white transition-colors">Visa Investor</Link></li>
             </ul>
           </div>
 

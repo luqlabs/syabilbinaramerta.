@@ -46,7 +46,7 @@ export default function Home() {
 
           <div className="space-y-40">
             {/* Service 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div id="visa-luar-negeri" className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center scroll-mt-24">
               <ServiceImage src="/visa.png" alt="Visa Luar Negeri" />
               <div className="space-y-8">
                 <div className="w-16 h-16 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
@@ -66,7 +66,7 @@ export default function Home() {
             </div>
 
             {/* Service 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div id="visa-wna" className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center scroll-mt-24">
               <div className="space-y-8 md:order-1 order-2">
                 <div className="w-16 h-16 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
                   <ShieldCheck className="w-6 h-6" />
@@ -88,7 +88,7 @@ export default function Home() {
             </div>
 
             {/* Service 3 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div id="perizinan-perusahaan" className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center scroll-mt-24">
               <ServiceImage src="/legal.png" alt="Legalitas Perusahaan" />
               <div className="space-y-8">
                 <div className="w-16 h-16 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">

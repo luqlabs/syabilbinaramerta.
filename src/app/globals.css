@@ -93,6 +93,10 @@
 .animate-float-5 { animation: float-up 20s infinite linear 2s; }
 
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
