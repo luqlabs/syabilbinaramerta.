@@ -6,6 +6,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Globe, CheckCircle2, Building2, ShieldCheck, Clock, FileText } from "lucide-react";
 import DestinationsSection from "@/components/sections/DestinationsSection";
 import DocumentGuideSection from "@/components/sections/DocumentGuideSection";
+import FAQSection from "@/components/sections/FAQSection";
+import ArticlesSection from "@/components/sections/ArticlesSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import ContactSection from "@/components/sections/ContactSection";
 
@@ -45,7 +47,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="font-serif text-5xl md:text-8xl text-foreground mb-6 leading-[1.1] tracking-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-8xl text-foreground mb-6 leading-[1.1] tracking-tight">
               Solusi Lengkap <br />
               <span className="italic text-brand-gold">Visa & Perizinan</span> Bisnis Anda
             </h1>
@@ -68,14 +70,19 @@ export default function Home() {
           >
             <a 
               href="https://wa.me/6285813809878" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center space-x-3 bg-foreground text-background px-8 py-4 rounded-full text-lg font-medium hover:bg-brand-gold hover:text-foreground transition-colors duration-300 group"
+              className="inline-flex w-full sm:w-auto items-center justify-center space-x-3 bg-foreground text-background px-8 py-4 rounded-full text-lg font-medium hover:bg-brand-gold hover:text-foreground transition-colors duration-300 group"
             >
               <span>Mulai Konsultasi</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
               href="#services"
-              className="inline-flex items-center space-x-3 bg-transparent border border-foreground/20 text-foreground px-8 py-4 rounded-full text-lg font-medium hover:bg-foreground/5 transition-colors duration-300"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('services');
+                if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+              }}
+              className="inline-flex w-full sm:w-auto items-center justify-center space-x-3 bg-transparent border border-foreground/20 text-foreground px-8 py-4 rounded-full text-lg font-medium hover:bg-foreground/5 transition-colors duration-300 cursor-pointer"
             >
               <span>Lihat Layanan</span>
             </a>
@@ -102,7 +109,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-32 bg-background relative z-20">
+      <section id="services" className="py-16 md:py-32 bg-background relative z-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-32 md:text-center max-w-3xl mx-auto">
             <p className="text-brand-gold text-sm font-bold uppercase tracking-[0.2em] mb-4">LAYANAN UTAMA</p>
@@ -180,7 +187,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section id="why-us" className="py-32 bg-brand-light border-y border-foreground/5">
+      <section id="why-us" className="py-16 md:py-32 bg-brand-light border-y border-foreground/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
@@ -234,7 +241,7 @@ export default function Home() {
       </section>
 
       {/* 4 Steps Process */}
-      <section id="process" className="py-32 bg-background">
+      <section id="process" className="py-16 md:py-32 bg-background">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="font-serif text-5xl text-foreground mb-4">Proses Sederhana 4 Langkah</h2>
@@ -266,8 +273,14 @@ export default function Home() {
       {/* Destinations Section */}
       <DestinationsSection />
 
-      {/* Document Guide (FAQ) Section */}
+      {/* Document Guide Section */}
       <DocumentGuideSection />
+
+      {/* FAQ Section */}
+      <FAQSection />
+
+      {/* Articles / Blog Section */}
+      <ArticlesSection />
 
       {/* Testimonials Section */}
       <TestimonialsSection />

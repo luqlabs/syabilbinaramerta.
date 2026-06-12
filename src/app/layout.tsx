@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import WhatsAppWidget from "@/components/ui/WhatsAppWidget";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -37,6 +38,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <WhatsAppWidget />
         </SmoothScroll>
       </body>
     </html>

@@ -1,6 +1,6 @@
 export default function Logo({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative flex items-center bg-[#516cf0] text-white p-3 md:p-4 rounded-sm shadow-md ${className}`}>
+    <div className={`relative inline-flex w-fit items-center bg-foreground text-background p-3 md:p-4 rounded-sm shadow-md ${className}`}>
       {/* Top Left Corner Bracket */}
       <div className="absolute top-2.5 left-2.5 w-4 h-8 md:w-6 md:h-10 border-t-[1.5px] border-l-[1.5px] border-white"></div>
       
