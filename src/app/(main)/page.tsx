@@ -54,7 +54,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-serif text-4xl md:text-5xl text-foreground">Visa ke Luar Negeri</h3>
                 <p className="text-foreground/70 leading-relaxed text-lg font-light">
-                  Pengurusan visa turis, bisnis, pelajar, hingga kerja untuk WNI yang akan bepergian ke berbagai negara.
+                  Pengurusan visa turis dan bisnis untuk WNI yang akan bepergian ke berbagai negara.
                 </p>
                 <ul className="space-y-4 pt-4 border-t border-foreground/10">
                   <li className="flex items-center space-x-4 text-foreground/80"><CheckCircle2 className="w-5 h-5 text-brand-gold flex-shrink-0" /> <span>Jepang, China, Korea</span></li>

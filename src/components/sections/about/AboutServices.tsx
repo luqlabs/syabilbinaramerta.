@@ -11,7 +11,7 @@ const services = [
     points: [
       "Visa Jepang, China, Schengen",
       "Visa Australia, Korea, UK, AS",
-      "Visa Bisnis & Pelajar",
+      "Visa Turis & Bisnis",
       "50+ negara tujuan"
     ]
   },
