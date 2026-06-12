@@ -112,8 +112,9 @@ export default function ContactSection() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm text-foreground/80 mb-2">Nama Lengkap <span className="text-red-500">*</span></label>
+                <label htmlFor="name" className="block text-sm text-foreground/80 mb-2">Nama Lengkap <span className="text-red-500">*</span></label>
                 <input 
+                  id="name"
                   type="text" name="name" required
                   value={formData.name} onChange={handleChange}
                   placeholder="Masukkan nama Anda"
@@ -122,8 +123,9 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm text-foreground/80 mb-2">Email</label>
+                <label htmlFor="email" className="block text-sm text-foreground/80 mb-2">Email</label>
                 <input 
+                  id="email"
                   type="email" name="email"
                   value={formData.email} onChange={handleChange}
                   placeholder="email@contoh.com"
@@ -132,8 +134,9 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm text-foreground/80 mb-2">Nomor Telepon / WhatsApp <span className="text-red-500">*</span></label>
+                <label htmlFor="phone" className="block text-sm text-foreground/80 mb-2">Nomor Telepon / WhatsApp <span className="text-red-500">*</span></label>
                 <input 
+                  id="phone"
                   type="tel" name="phone" required
                   value={formData.phone} onChange={handleChange}
                   placeholder="0812..."
@@ -142,8 +145,9 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm text-foreground/80 mb-2">Layanan yang Dibutuhkan <span className="text-red-500">*</span></label>
+                <label htmlFor="service" className="block text-sm text-foreground/80 mb-2">Layanan yang Dibutuhkan <span className="text-red-500">*</span></label>
                 <select 
+                  id="service"
                   name="service" required
                   value={formData.service} onChange={handleChange}
                   className="w-full bg-transparent border border-foreground/20 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors font-light text-foreground appearance-none"
@@ -157,8 +161,9 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm text-foreground/80 mb-2">Pesan</label>
+                <label htmlFor="message" className="block text-sm text-foreground/80 mb-2">Pesan</label>
                 <textarea 
+                  id="message"
                   name="message" rows={4}
                   value={formData.message} onChange={handleChange}
                   placeholder="Ceritakan detail kebutuhan Anda..."

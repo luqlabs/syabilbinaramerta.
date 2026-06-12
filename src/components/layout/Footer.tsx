@@ -45,16 +45,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/40 font-light">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/60 font-light">
           <p>&copy; {new Date().getFullYear()} CV. Syabil Binar Amerta. All rights reserved.</p>
           <div className="flex items-center space-x-6">
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:-translate-y-1 transition-transform">
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="hover:-translate-y-1 transition-transform">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-8 h-8 drop-shadow-md">
                 <circle cx="12" cy="12" r="12" fill="#1877F2"/>
                 <path fill="white" d="M14.5 12h-2v7H10v-7H8.5v-2H10V8.5c0-1.4.9-2.2 2.1-2.2.6 0 1.1.1 1.3.1v1.5h-.9c-.7 0-.8.3-.8.8V10h2.2l-.3 2z"/>
               </svg>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:-translate-y-1 transition-transform">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="hover:-translate-y-1 transition-transform">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-8 h-8 drop-shadow-md">
                 <defs>
                   <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -73,7 +73,7 @@ export default function Footer() {
                 </g>
               </svg>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:-translate-y-1 transition-transform">
+            <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="hover:-translate-y-1 transition-transform">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-8 h-8 drop-shadow-md">
                 <circle cx="12" cy="12" r="12" fill="#0077b5"/>
                 <path fill="white" d="M8.36 17H5.64V9.67h2.72V17zM7 8.35c-.87 0-1.57-.7-1.57-1.57s.7-1.57 1.57-1.57 1.57.7 1.57 1.57-.7 1.57-1.57 1.57zM18.36 17h-2.72v-3.56c0-.85-.02-1.95-1.19-1.95-1.19 0-1.37.93-1.37 1.89V17h-2.72V9.67h2.61v1h.04c.36-.69 1.25-1.42 2.58-1.42 2.76 0 3.27 1.82 3.27 4.18V17z"/>

@@ -128,7 +128,7 @@ export default function Home() {
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-xl text-foreground mb-2">Ahli & Berpengalaman</h4>
+                    <h3 className="font-medium text-xl text-foreground mb-2">Ahli & Berpengalaman</h3>
                     <p className="text-foreground/70 font-light">Tim kami terdiri dari praktisi legal dan spesialis imigrasi dengan pengalaman lebih dari 5 tahun.</p>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export default function Home() {
                     <FileText className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-xl text-foreground mb-2">Proses Transparan</h4>
+                    <h3 className="font-medium text-xl text-foreground mb-2">Proses Transparan</h3>
                     <p className="text-foreground/70 font-light">Status pengurusan dokumen dapat dipantau kapan saja. Tidak ada biaya tersembunyi.</p>
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export default function Home() {
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-xl text-foreground mb-2">Cepat & Tepat Waktu</h4>
+                    <h3 className="font-medium text-xl text-foreground mb-2">Cepat & Tepat Waktu</h3>
                     <p className="text-foreground/70 font-light">Komitmen SLA (Service Level Agreement) yang jelas untuk setiap layanan yang kami berikan.</p>
                   </div>
                 </div>
@@ -183,7 +183,7 @@ export default function Home() {
                 <div className="w-24 h-24 rounded-full bg-foreground text-brand-gold flex items-center justify-center font-serif text-3xl mb-6 shadow-xl border-4 border-background transition-transform hover:scale-110 duration-300">
                   {step.num}
                 </div>
-                <h4 className="font-medium text-xl text-foreground mb-3">{step.title}</h4>
+                <h3 className="font-medium text-xl text-foreground mb-3">{step.title}</h3>
                 <p className="text-foreground/60 font-light leading-relaxed">{step.desc}</p>
               </div>
             ))}

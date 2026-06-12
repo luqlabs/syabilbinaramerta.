@@ -28,6 +28,7 @@ export default function WhatsAppWidget() {
             <div className="bg-[#25D366] p-4 text-white relative">
               <button 
                 onClick={() => setIsOpen(false)}
+                aria-label="Tutup chat WhatsApp"
                 className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
               >
                 <X className="w-5 h-5" />
@@ -48,7 +49,7 @@ export default function WhatsAppWidget() {
                 <p className="text-sm text-foreground/80 leading-relaxed pb-4">
                   Halo! Selamat datang di CV. Syabil Binar Amerta. Ada yang bisa kami bantu? Konsultasi gratis, langsung dengan tim ahli kami.
                 </p>
-                <span className="text-[10px] text-foreground/40 absolute bottom-2 right-3">
+                <span className="text-[10px] text-foreground/60 absolute bottom-2 right-3">
                   Baru saja
                 </span>
               </div>
@@ -58,6 +59,7 @@ export default function WhatsAppWidget() {
             <div className="p-5 bg-white border-t border-foreground/5 text-center">
               <button 
                 onClick={handleOpenWa}
+                aria-label="Mulai Konsultasi Gratis via WhatsApp"
                 className="w-full bg-[#25D366] hover:bg-[#1ebd5a] text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors mb-3 shadow-lg shadow-[#25D366]/20"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -67,6 +69,7 @@ export default function WhatsAppWidget() {
               </button>
               <button 
                 onClick={() => setIsOpen(false)}
+                aria-label="Tutup jendela chat"
                 className="text-xs text-foreground/50 hover:text-foreground/80 transition-colors font-medium"
               >
                 Tidak, terima kasih
@@ -78,6 +81,7 @@ export default function WhatsAppWidget() {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle widget WhatsApp"
         className="w-14 h-14 bg-[#25D366] hover:bg-[#1ebd5a] text-white rounded-full flex items-center justify-center shadow-xl transition-transform hover:scale-110 focus:outline-none"
       >
         {isOpen ? <X className="w-6 h-6" /> : (
