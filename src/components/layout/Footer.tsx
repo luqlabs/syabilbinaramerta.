@@ -37,8 +37,8 @@ export default function Footer() {
             <ul className="space-y-4 text-white/60 font-light text-sm">
               <li><Link href="/tentang-kami" className="hover:text-white transition-colors">Tentang Kami</Link></li>
               <li><Link href="/artikel" className="hover:text-white transition-colors">Artikel & Tips</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Syarat & Ketentuan</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Kebijakan Privasi</Link></li>
+              {/* <li><Link href="#" className="hover:text-white transition-colors">Syarat & Ketentuan</Link></li> */}
+              {/* <li><Link href="#" className="hover:text-white transition-colors">Kebijakan Privasi</Link></li> */}
             </ul>
           </div>
 
