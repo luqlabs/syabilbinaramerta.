@@ -33,8 +33,8 @@ export default function Home() {
           className="absolute inset-0 w-full h-full"
         >
           <Image 
-            src="/hero.png" 
-            alt="CV Syabil Binar Amerta Hero" 
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" 
+            alt="Corporate Building" 
             fill 
             priority
             className="object-cover opacity-[0.15]"
@@ -233,7 +233,7 @@ export default function Home() {
                 <Image src="/legal.png" alt="Legal" fill className="object-cover" />
               </div>
               <div className="absolute bottom-0 left-0 w-3/4 h-3/4 rounded-2xl overflow-hidden shadow-2xl border-4 border-background">
-                <Image src="/hero.png" alt="Team" fill className="object-cover" />
+                <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" alt="Team" fill className="object-cover" />
               </div>
             </div>
           </div>
