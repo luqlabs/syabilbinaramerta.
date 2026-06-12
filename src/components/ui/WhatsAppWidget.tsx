@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "@/components/Logo";
 
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,19 +33,12 @@ export default function WhatsAppWidget() {
                 <X className="w-5 h-5" />
               </button>
               
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
-                  <div className="scale-[0.4] origin-center">
-                    <Logo className="!bg-transparent !p-0 shadow-none border-none !text-white" />
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-bold text-sm">CV. Syabil Binar Amerta</h4>
-                  <p className="text-xs text-white/90 flex items-center gap-1.5 mt-0.5">
-                    <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                    Online sekarang
-                  </p>
-                </div>
+              <div>
+                <h4 className="font-bold text-sm">CV. Syabil Binar Amerta</h4>
+                <p className="text-xs text-white/90 flex items-center gap-1.5 mt-0.5">
+                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                  Online sekarang
+                </p>
               </div>
             </div>
 
