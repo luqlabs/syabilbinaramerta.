@@ -1,21 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search } from "lucide-react";
-import { articlesData } from "@/data/articles";
+import { client } from "@/sanity/lib/client";
+import { allArtikelQuery, SanityArtikel } from "@/sanity/lib/queries";
 
 export default function ArtikelPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("Semua");
+  const [articles, setArticles] = useState<SanityArtikel[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const data = await client.fetch(allArtikelQuery);
+        setArticles(data);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchArticles();
+  }, []);
 
   const categories = ["Semua", "Visa ke Luar Negeri", "Imigrasi WNA", "Perizinan Perusahaan"];
 
-  const filteredArticles = articlesData.filter((article) => {
+  const filteredArticles = articles.filter((article) => {
     const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+                          (article.excerpt && article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesCategory = activeCategory === "Semua" || article.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
@@ -74,19 +91,25 @@ export default function ArtikelPage() {
         <div className="max-w-7xl mx-auto">
           {filteredArticles.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-foreground/50 text-xl">Tidak ada artikel yang ditemukan.</p>
-              <button 
-                onClick={() => { setSearchQuery(""); setActiveCategory("Semua"); }}
-                className="mt-4 text-brand-gold hover:underline"
-              >
-                Reset pencarian
-              </button>
+              {isLoading ? (
+                 <p className="text-foreground/50 text-xl">Memuat artikel...</p>
+              ) : (
+                <>
+                  <p className="text-foreground/50 text-xl">Tidak ada artikel yang ditemukan.</p>
+                  <button 
+                    onClick={() => { setSearchQuery(""); setActiveCategory("Semua"); }}
+                    className="mt-4 text-brand-gold hover:underline"
+                  >
+                    Reset pencarian
+                  </button>
+                </>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               <AnimatePresence>
                 {filteredArticles.map((article, i) => (
-                  <Link href={`/artikel/${article.slug}`} key={article.id}>
+                  <Link href={`/artikel/${article.slug.current}`} key={article._id}>
                     <motion.div 
                       layout
                       initial={{ opacity: 0, scale: 0.9 }}
@@ -98,8 +121,8 @@ export default function ArtikelPage() {
                       {/* Image Container */}
                       <div className="relative aspect-video w-full overflow-hidden">
                         <Image 
-                          src={article.imageUrl} 
-                          alt={article.title} 
+                          src={article.coverImage} 
+                          alt={article.coverImageAlt || article.title} 
                           fill 
                           className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
                         />
@@ -118,8 +141,8 @@ export default function ArtikelPage() {
                         </p>
                         
                         <div className="flex items-center justify-between text-xs text-gray-400 pt-6 border-t border-gray-100">
-                          <span>{article.readTime}</span>
-                          <span>{article.publishedAt}</span>
+                          <span>5 menit baca</span>
+                          <span>{new Date(article.publishedAt).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })}</span>
                         </div>
                       </div>
                     </motion.div>

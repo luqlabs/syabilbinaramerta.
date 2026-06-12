@@ -4,9 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 import Link from "next/link";
-import { articlesData } from "@/data/articles";
+import { client } from "@/sanity/lib/client";
+import { latestArtikelQuery, SanityArtikel } from "@/sanity/lib/queries";
 
-export default function ArticlesSection() {
+export default async function ArticlesSection() {
+  const articles: SanityArtikel[] = await client.fetch(latestArtikelQuery, {}, { next: { revalidate: 60 } });
   return (
     <section className="py-32 bg-brand-light border-y border-foreground/5">
       <div className="max-w-7xl mx-auto px-6">
@@ -20,8 +22,8 @@ export default function ArticlesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {articlesData.slice(0, 3).map((article, i) => (
-            <Link href={`/artikel/${article.slug}`} key={article.id}>
+          {articles.map((article, i) => (
+            <Link href={`/artikel/${article.slug.current}`} key={article._id}>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -32,8 +34,8 @@ export default function ArticlesSection() {
               {/* Image Container */}
               <div className="relative h-56 w-full overflow-hidden">
                 <Image 
-                  src={article.imageUrl} 
-                  alt={article.title} 
+                  src={article.coverImage} 
+                  alt={article.coverImageAlt || article.title} 
                   fill 
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
                 />
@@ -52,8 +54,8 @@ export default function ArticlesSection() {
                 </p>
                 
                 <div className="flex items-center justify-between text-xs text-foreground/50 pt-6 border-t border-foreground/10">
-                  <span>{article.readTime}</span>
-                  <span>{article.publishedAt}</span>
+                  <span>5 menit baca</span>
+                  <span>{new Date(article.publishedAt).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })}</span>
                 </div>
               </div>
               </motion.div>

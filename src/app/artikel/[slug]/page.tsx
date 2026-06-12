@@ -2,63 +2,60 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { articlesData, Article, ContentBlock } from "@/data/articles";
+import { PortableText } from "@portabletext/react";
+import { client } from "@/sanity/lib/client";
+import { artikelBySlugQuery, allArtikelSlugsQuery, relatedArtikelQuery, SanityArtikel } from "@/sanity/lib/queries";
 
 // Generate static routes at build time
-export function generateStaticParams() {
-  return articlesData.map((article) => ({
-    slug: article.slug,
-  }));
+export async function generateStaticParams() {
+  const slugs: { slug: string }[] = await client.fetch(allArtikelSlugsQuery);
+  return slugs;
 }
 
-// Function to render rich text blocks
-function renderContent(blocks: ContentBlock[]) {
-  return blocks.map((block, index) => {
-    switch (block.type) {
-      case "paragraph":
-        return <p key={index} className="mb-6 leading-relaxed text-foreground/80">{block.text}</p>;
-      case "h2":
-        return <h2 key={index} className="font-serif text-2xl md:text-3xl font-bold mt-12 mb-6 text-foreground">{block.text}</h2>;
-      case "h3":
-        return <h3 key={index} className="font-serif text-xl md:text-2xl font-bold mt-8 mb-4 text-foreground">{block.text}</h3>;
-      case "list":
-        return (
-          <ul key={index} className="list-disc pl-6 mb-8 space-y-3 text-foreground/80">
-            {block.items.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        );
-      default:
-        return null;
+// Custom components for Portable Text
+const portableTextComponents = {
+  types: {
+    image: ({ value }: any) => {
+      return (
+        <div className="relative w-full h-[300px] md:h-[400px] my-8 rounded-2xl overflow-hidden">
+          <Image
+            src={value.asset ? value.asset.url : ""} // Need actual url builder if asset is just a ref
+            alt={value.alt || "Article Image"}
+            fill
+            className="object-cover"
+          />
+          {value.caption && <div className="absolute bottom-0 w-full bg-black/60 text-white text-sm p-2 text-center">{value.caption}</div>}
+        </div>
+      )
     }
-  });
-}
+  }
+};
 
 export default async function ArticleDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = articlesData.find((a) => a.slug === slug);
+  
+  const article: SanityArtikel = await client.fetch(artikelBySlugQuery, { slug }, { next: { revalidate: 60 } });
 
   if (!article) {
     notFound();
   }
 
-  // Get 3 related articles (excluding the current one)
-  const relatedArticles = articlesData
-    .filter((a) => a.id !== article.id)
-    .slice(0, 3);
+  // Get related articles
+  const relatedArticles: SanityArtikel[] = await client.fetch(relatedArtikelQuery, { slug }, { next: { revalidate: 60 } });
 
   return (
     <main className="flex-grow flex flex-col">
       {/* Hero Image Section */}
       <section className="relative w-full h-[40vh] md:h-[50vh] min-h-[300px] md:min-h-[400px]">
-        <Image
-          src={article.imageUrl}
-          alt={article.title}
-          fill
-          className="object-cover"
-          priority
-        />
+        {article.coverImage && (
+          <Image
+            src={article.coverImage}
+            alt={article.coverImageAlt || article.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
         <div className="absolute inset-0 bg-black/40" /> {/* Dark overlay for contrast */}
         
       </section>
@@ -87,9 +84,9 @@ export default async function ArticleDetail({ params }: { params: Promise<{ slug
                       {article.category}
                     </span>
                     <span>•</span>
-                    <span>{article.readTime}</span>
+                    <span>5 menit baca</span>
                     <span>•</span>
-                    <span>{article.publishedAt}</span>
+                    <span>{new Date(article.publishedAt).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })}</span>
                   </div>
                   
                   <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight mb-8">
@@ -113,7 +110,7 @@ export default async function ArticleDetail({ params }: { params: Promise<{ slug
                     {article.excerpt}
                   </div>
                   
-                  {renderContent(article.content)}
+                  {article.body && <PortableText value={article.body as any} components={portableTextComponents} />}
                 </article>
 
                 {/* WhatsApp CTA Box */}
@@ -140,15 +137,17 @@ export default async function ArticleDetail({ params }: { params: Promise<{ slug
                 <h3 className="font-serif text-2xl font-bold text-foreground mb-6">Artikel Lainnya</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                   {relatedArticles.map((relArticle) => (
-                    <Link href={`/artikel/${relArticle.slug}`} key={relArticle.id}>
+                    <Link href={`/artikel/${relArticle.slug.current}`} key={relArticle._id}>
                       <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-foreground/5 group hover:shadow-xl transition-all cursor-pointer flex flex-col hover:-translate-y-1 h-full">
                         <div className="relative h-40 w-full overflow-hidden">
-                          <Image 
-                            src={relArticle.imageUrl} 
-                            alt={relArticle.title} 
-                            fill 
-                            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-                          />
+                          {relArticle.coverImage && (
+                            <Image 
+                              src={relArticle.coverImage} 
+                              alt={relArticle.coverImageAlt || relArticle.title} 
+                              fill 
+                              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                            />
+                          )}
                         </div>
                         <div className="p-5 flex flex-col flex-grow">
                           <div className="text-[10px] text-brand-gold font-bold uppercase tracking-wider mb-2">
@@ -158,8 +157,8 @@ export default async function ArticleDetail({ params }: { params: Promise<{ slug
                             {relArticle.title}
                           </h4>
                           <div className="flex items-center justify-between text-[10px] text-foreground/50 mt-auto pt-3 border-t border-foreground/5">
-                            <span>{relArticle.readTime}</span>
-                            <span>{relArticle.publishedAt}</span>
+                            <span>5 menit baca</span>
+                            <span>{new Date(relArticle.publishedAt).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })}</span>
                           </div>
                         </div>
                       </div>
