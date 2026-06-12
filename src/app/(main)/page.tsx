@@ -1,94 +1,19 @@
-"use client";
-
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Globe, CheckCircle2, Building2, ShieldCheck, Clock, FileText } from "lucide-react";
+import { Globe, CheckCircle2, Building2, ShieldCheck, Clock, FileText } from "lucide-react";
+import HeroSection from "@/components/sections/HeroSection";
 import DestinationsSection from "@/components/sections/DestinationsSection";
 import DocumentGuideSection from "@/components/sections/DocumentGuideSection";
 import FAQSection from "@/components/sections/FAQSection";
 import ArticlesSection from "@/components/sections/ArticlesSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import ServiceImage from "@/components/ui/ServiceImage";
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section 
-        ref={containerRef}
-        className="relative h-[90vh] md:h-screen w-full flex items-center justify-center overflow-hidden"
-      >
-        <motion.div 
-          style={{ y, opacity }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <Image 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" 
-            alt="Corporate Building" 
-            fill 
-            priority
-            className="object-cover opacity-[0.15]"
-          />
-        </motion.div>
-
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-8xl text-foreground mb-6 leading-[1.1] tracking-tight">
-              Solusi Lengkap <br />
-              <span className="italic text-brand-gold">Visa & Perizinan</span> Bisnis Anda
-            </h1>
-          </motion.div>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            className="text-lg md:text-xl text-foreground/70 max-w-2xl mb-10 font-light leading-relaxed"
-          >
-            Kami membantu individu dan perusahaan mengurus Visa ke luar negeri, Izin Tinggal & Kerja untuk ekspatriat, serta legalitas perusahaan dengan cepat, transparan, dan profesional.
-          </motion.p>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center gap-4"
-          >
-            <a 
-              href="https://wa.me/6285813809878" target="_blank" rel="noopener noreferrer"
-              className="inline-flex w-full sm:w-auto items-center justify-center space-x-3 bg-foreground text-background px-8 py-4 rounded-full text-lg font-medium hover:bg-brand-gold hover:text-foreground transition-colors duration-300 group"
-            >
-              <span>Mulai Konsultasi</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a 
-              href="#services"
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById('services');
-                if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
-              }}
-              className="inline-flex w-full sm:w-auto items-center justify-center space-x-3 bg-transparent border border-foreground/20 text-foreground px-8 py-4 rounded-full text-lg font-medium hover:bg-foreground/5 transition-colors duration-300 cursor-pointer"
-            >
-              <span>Lihat Layanan</span>
-            </a>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Trust Indicators */}
       <section className="py-24 border-y border-foreground/5 bg-brand-light">
@@ -102,7 +27,7 @@ export default function Home() {
             <p className="text-sm uppercase tracking-widest text-foreground/60">Success Rate</p>
           </div>
           <div className="flex flex-col items-center justify-center pt-8 md:pt-0">
-            <h3 className="font-serif text-5xl text-brand-gold mb-4">10+</h3>
+            <h3 className="font-serif text-5xl text-brand-gold mb-4">5+</h3>
             <p className="text-sm uppercase tracking-widest text-foreground/60">Tahun Pengalaman</p>
           </div>
         </div>
@@ -189,7 +114,7 @@ export default function Home() {
       {/* Why Choose Us */}
       <section id="why-us" className="py-16 md:py-32 bg-brand-light border-y border-foreground/5">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-brand-gold text-sm font-bold uppercase tracking-[0.2em] mb-4">MENGAPA KAMI?</p>
               <h2 className="font-serif text-5xl text-foreground mb-6">Mitra Terpercaya untuk Dokumen Penting Anda</h2>
@@ -204,7 +129,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-medium text-xl text-foreground mb-2">Ahli & Berpengalaman</h4>
-                    <p className="text-foreground/70 font-light">Tim kami terdiri dari praktisi legal dan spesialis imigrasi dengan pengalaman lebih dari 10 tahun.</p>
+                    <p className="text-foreground/70 font-light">Tim kami terdiri dari praktisi legal dan spesialis imigrasi dengan pengalaman lebih dari 5 tahun.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -228,13 +153,9 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="relative w-full h-full min-h-[400px]">
-              <div className="absolute top-0 right-0 w-4/5 h-4/5 rounded-2xl overflow-hidden shadow-2xl">
-                <Image src="/legal.png" alt="Legal" fill className="object-cover" />
-              </div>
-              <div className="absolute bottom-0 left-0 w-3/4 h-3/4 rounded-2xl overflow-hidden shadow-2xl border-4 border-background">
-                <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" alt="Team" fill className="object-cover" />
-              </div>
+            {/* Minimalist image without absolute overlap hacks or Unsplash */}
+            <div className="w-full aspect-square md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-background relative">
+              <Image src="/legal.png" alt="Legal" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
           </div>
         </div>
@@ -288,25 +209,6 @@ export default function Home() {
       {/* Contact Section */}
       <ContactSection />
 
-    </div>
-  );
-}
-
-function ServiceImage({ src, alt }: { src: string, alt: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  
-  // Parallax subtle effect on the image container
-  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
-
-  return (
-    <div ref={ref} className="relative aspect-[4/5] md:aspect-[3/4] w-full overflow-hidden bg-foreground/5 rounded-md">
-      <motion.div style={{ y }} className="absolute inset-0 w-full h-[130%] -top-[15%]">
-        <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-      </motion.div>
     </div>
   );
 }

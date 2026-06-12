@@ -15,11 +15,11 @@ export async function generateStaticParams() {
 // Custom components for Portable Text
 const portableTextComponents = {
   types: {
-    image: ({ value }: any) => {
+    image: ({ value }: { value: { asset?: { url?: string }, alt?: string, caption?: string } }) => {
       return (
         <div className="relative w-full h-[300px] md:h-[400px] my-8 rounded-2xl overflow-hidden">
           <Image
-            src={value.asset ? value.asset.url : ""} // Need actual url builder if asset is just a ref
+            src={value.asset?.url || ""} // Need actual url builder if asset is just a ref
             alt={value.alt || "Article Image"}
             fill
             className="object-cover"
@@ -110,6 +110,7 @@ export default async function ArticleDetail({ params }: { params: Promise<{ slug
                     {article.excerpt}
                   </div>
                   
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   {article.body && <PortableText value={article.body as any} components={portableTextComponents} />}
                 </article>
 

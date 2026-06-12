@@ -6,7 +6,8 @@
   --color-foreground: var(--foreground);
   
   /* Custom brand colors */
-  --color-brand-blue: #0A192F;
+  --color-brand-blue: #3B5998; /* Client's Logo Blue */
+  --color-brand-blue-dark: #2A4073;
   --color-brand-gold: #D4AF37;
   --color-brand-light: #F9F8F6; /* Off-white/Cream like Mammamia */
   

@@ -4,6 +4,6 @@ export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   apiVersion: "2025-01-01",
-  useCdn: true, // CDN untuk performa maksimal di production
+  useCdn: false, // Set false agar perubahan (publish/unpublish) instan terlihat
   token: process.env.SANITY_API_TOKEN,
 });

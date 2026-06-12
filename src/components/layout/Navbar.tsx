@@ -11,7 +11,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const isDarkBg = pathname?.startsWith("/artikel") && !isScrolled;
+  const isDarkBg = !isScrolled && pathname?.startsWith("/artikel");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,11 +40,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-[#0A1128]/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
         <Link href="/" className="group scale-75 md:scale-90 origin-left hover:scale-[0.78] md:hover:scale-95 transition-transform duration-300">
-          <Logo />
+          <Logo className={isDarkBg ? "text-white" : "text-foreground"} />
         </Link>
 
         <div className={`hidden lg:flex items-center space-x-10 text-sm font-medium tracking-wide ${isDarkBg ? "text-white/90" : "text-foreground"}`}>

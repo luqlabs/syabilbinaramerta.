@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -31,12 +30,8 @@ export default function TestimonialsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((item, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
               className="bg-brand-light p-8 rounded-2xl border border-foreground/5 hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
             >
               <div>
@@ -45,13 +40,13 @@ export default function TestimonialsSection() {
                     <Star key={j} className="w-5 h-5 fill-[#FBBF24] text-[#FBBF24]" />
                   ))}
                 </div>
-                <p className="text-foreground/70 font-light italic leading-relaxed mb-8">"{item.text}"</p>
+                <p className="text-foreground/70 font-light italic leading-relaxed mb-8">&quot;{item.text}&quot;</p>
               </div>
               <div>
                 <h4 className="font-medium text-foreground">{item.name}</h4>
                 <p className="text-sm text-foreground/50">{item.role}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

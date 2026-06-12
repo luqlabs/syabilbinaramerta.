@@ -7,8 +7,9 @@ export default defineConfig({
   name: "syabil-binar-amerta",
   title: "CV. Syabil Binar Amerta — CMS",
 
-  projectId: "u3iy60jg",
-  dataset: "syabilbinaramerta",
+  projectId: "jb6ci1mm",
+  dataset: "production",
+  basePath: "/studio",
 
   plugins: [
     structureTool({
